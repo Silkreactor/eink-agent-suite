@@ -4,7 +4,7 @@ Small, honest experiments for using an e-ink tablet as a calm interface for lear
 
 This release candidate contains two working, dependency-free browser prototypes, one synthetic planner artifact, and an experimental reMarkable AppLoad interaction. It does **not** contain a finished product, a live-device installer, a Hermes integration, or any private user data.
 
-This candidate is prepared for a repository named `silkreactor/eink-agent-suite`. The public repository must still be created and its uploaded contents verified before the URL is treated as stable.
+This verified meetup release is published at [`Silkreactor/eink-agent-suite`](https://github.com/Silkreactor/eink-agent-suite). Its public URL and repository contents were checked before QR generation.
 
 ## What works today
 
