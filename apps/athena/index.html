@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Turn a short note into a calm, printable retrieval worksheet. Everything stays in this browser tab.">
+  <title>Athena - Note to worksheet</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#main" aria-label="Athena home">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span>
+        <strong>Athena</strong>
+        <small>Note to worksheet</small>
+      </span>
+    </a>
+    <p class="privacy-badge"><span aria-hidden="true"></span> Private by design: this page does not save or send your note.</p>
+  </header>
+
+  <main id="main" class="workspace">
+    <section class="composer" aria-labelledby="composer-title">
+      <div class="section-heading">
+        <p class="eyebrow">Prepare</p>
+        <h1 id="composer-title">Turn rereading into recall.</h1>
+        <p>Paste one short learning note. Athena will make three retrieval questions and one reflection prompt using only words and ideas from that note.</p>
+      </div>
+
+      <form id="worksheet-form" novalidate>
+        <label for="note-title">Title</label>
+        <input id="note-title" name="title" type="text" maxlength="80" autocomplete="off" placeholder="e.g. Why sleep strengthens memory">
+
+        <div class="label-row">
+          <label for="note-body">Learning note</label>
+          <output id="word-count" for="note-body">0 / 100-300 words</output>
+        </div>
+        <textarea id="note-body" name="note" rows="12" spellcheck="true" placeholder="Paste a short note here. Include a few clear facts or ideas you want to remember."></textarea>
+        <p id="form-message" class="form-message" role="status" aria-live="polite">Use 100-300 words so the questions have enough substance.</p>
+
+        <div class="form-actions">
+          <button class="button button-primary" type="submit">Generate worksheet</button>
+          <button class="button button-secondary" id="example-button" type="button">Load invented example</button>
+          <button class="text-button" id="clear-button" type="button">Clear</button>
+        </div>
+      </form>
+
+      <div class="how-it-works" aria-label="How Athena works">
+        <div><span>1</span><p><strong>Finds key ideas</strong><br>Locally, in this tab.</p></div>
+        <div><span>2</span><p><strong>Builds four prompts</strong><br>Always three plus one.</p></div>
+        <div><span>3</span><p><strong>Prints one page</strong><br>Ready for handwriting.</p></div>
+      </div>
+    </section>
+
+    <section class="preview-panel" aria-labelledby="preview-title">
+      <div class="preview-toolbar">
+        <div>
+          <p class="eyebrow">Preview</p>
+          <h2 id="preview-title">Your one-page worksheet</h2>
+        </div>
+        <button class="button button-print" id="print-button" type="button" disabled>Print / Save PDF</button>
+      </div>
+
+      <div class="page-stage">
+        <article id="worksheet" class="sheet is-empty" aria-live="polite" aria-label="Worksheet preview">
+          <header class="sheet-header">
+            <div>
+              <p class="sheet-kicker">ATHENA / RETRIEVAL PRACTICE</p>
+              <h2 id="sheet-title">Your learning worksheet</h2>
+            </div>
+            <div class="date-line">DATE <span></span></div>
+          </header>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-symbol" aria-hidden="true">?</div>
+            <h3>A quiet page is waiting.</h3>
+            <p>Add a title and a 100-300 word note, then generate your worksheet.</p>
+          </div>
+
+          <div id="sheet-content" class="sheet-content" hidden>
+            <section class="retrieval-section" aria-labelledby="retrieval-heading">
+              <div class="sheet-section-label">
+                <p id="retrieval-heading">RETRIEVE</p>
+                <span>Answer without looking back first.</span>
+              </div>
+              <ol id="question-list" class="question-list"></ol>
+            </section>
+
+            <section class="reflection-section" aria-labelledby="reflection-heading">
+              <div class="sheet-section-label">
+                <p id="reflection-heading">REFLECT</p>
+                <span>Connect the idea to your own understanding.</span>
+              </div>
+              <p id="reflection-prompt" class="reflection-prompt"></p>
+              <div class="writing-lines reflection-lines" aria-hidden="true"></div>
+            </section>
+          </div>
+
+          <footer class="sheet-footer">
+            <span>Recall first. Review second.</span>
+            <span>ATHENA / 01</span>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="question-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

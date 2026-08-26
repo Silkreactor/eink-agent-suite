@@ -1,0 +1,8 @@
+{
+  "name": "Caissa Test",
+  "loadsBackend": false,
+  "entry": "/ui/Caissa.qml",
+  "id": "caissa-device-test-v0",
+  "supportsScaling": true,
+  "canHaveMultipleFrontends": false
+}

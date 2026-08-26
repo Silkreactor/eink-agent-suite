@@ -1,0 +1,11 @@
+{
+  "name": "caissa-local-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Dependency-free local interaction prototype for Caissa chess.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "node scripts/serve.js"
+  }
+}

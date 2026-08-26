@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#f2efe6">
+  <title>Caissa — Local prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="kicker">E-INK CHESS PROTOTYPE</p>
+        <h1>Caissa</h1>
+      </div>
+      <button id="setup-button" class="quiet-button" type="button" hidden>Game setup</button>
+    </header>
+
+    <section id="setup" class="setup" aria-labelledby="setup-title">
+      <div class="intro">
+        <p class="kicker">NEW GAME</p>
+        <h2 id="setup-title">How would you like to play?</h2>
+        <p>Designed for deliberate taps and a calm, high-contrast e-ink screen.</p>
+      </div>
+
+      <fieldset>
+        <legend>Game mode</legend>
+        <div class="cards two-up">
+          <label class="choice-card">
+            <input type="radio" name="mode" value="local" checked>
+            <span class="radio-mark" aria-hidden="true"></span>
+            <span><strong>Two players</strong><small>Share this screen</small></span>
+          </label>
+          <label class="choice-card">
+            <input type="radio" name="mode" value="computer">
+            <span class="radio-mark" aria-hidden="true"></span>
+            <span><strong>Computer</strong><small>Play the local prototype</small></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div id="computer-settings" hidden>
+        <div class="prototype-note" role="note">
+          <strong>Local prototype opponent</strong>
+          <span>These five test strengths run offline. They are not Stockfish or the future Hermes engine.</span>
+        </div>
+
+        <fieldset>
+          <legend>Test strength</legend>
+          <div class="levels">
+            <label><input type="radio" name="level" value="1"><span><b>1</b><small>Gentle</small></span></label>
+            <label><input type="radio" name="level" value="2"><span><b>2</b><small>Easy</small></span></label>
+            <label><input type="radio" name="level" value="3" checked><span><b>3</b><small>Club</small></span></label>
+            <label><input type="radio" name="level" value="4"><span><b>4</b><small>Hard</small></span></label>
+            <label><input type="radio" name="level" value="5"><span><b>5</b><small>Maximum</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Play as</legend>
+          <div class="cards two-up compact">
+            <label class="choice-card">
+              <input type="radio" name="side" value="w" checked>
+              <span class="radio-mark" aria-hidden="true"></span>
+              <span><strong>White</strong><small>You move first</small></span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="side" value="b">
+              <span class="radio-mark" aria-hidden="true"></span>
+              <span><strong>Black</strong><small>Computer moves first</small></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <button id="start-button" class="primary-button" type="button">Start two-player game</button>
+      <p class="privacy-note">Games stay in this browser tab and are not saved.</p>
+    </section>
+
+    <section id="game" class="game-layout" hidden aria-label="Chess game">
+      <div class="board-column">
+        <div class="status-strip" aria-live="polite">
+          <span id="turn-token" class="turn-token white" aria-hidden="true"></span>
+          <div>
+            <p id="status-text" class="status-text">White to move</p>
+            <p id="status-detail" class="status-detail">Tap a piece, then its destination.</p>
+          </div>
+        </div>
+
+        <div id="board" class="board" role="grid" aria-label="Chess board"></div>
+
+        <div class="controls">
+          <button id="rotate-button" type="button">Rotate board</button>
+          <button id="resign-button" type="button">Resign</button>
+          <label class="promotion-label">Promote to
+            <select id="promotion-select" aria-label="Promotion piece">
+              <option value="q">Queen</option>
+              <option value="r">Rook</option>
+              <option value="b">Bishop</option>
+              <option value="n">Knight</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <section class="panel-card game-card">
+          <p class="kicker">GAME</p>
+          <p id="game-label" class="game-label">Two players</p>
+          <p id="opponent-label" class="opponent-label"></p>
+        </section>
+
+        <section class="panel-card coach-card" aria-live="polite">
+          <p class="kicker">BOARD NOTE</p>
+          <p id="board-note">Select one of White's pieces.</p>
+        </section>
+
+        <section class="panel-card moves-card">
+          <p class="kicker">MOVES</p>
+          <ol id="move-list" class="move-list"></ol>
+          <p id="no-moves" class="no-moves">No moves yet.</p>
+        </section>
+
+        <section id="result-card" class="result-card" hidden aria-live="assertive">
+          <p class="kicker">GAME OVER</p>
+          <h2 id="result-title">White wins</h2>
+          <p id="result-lesson"></p>
+          <button id="play-again-button" class="primary-button" type="button">Play again</button>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="src/chess.js"></script>
+  <script src="src/ai.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>

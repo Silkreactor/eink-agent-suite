@@ -1,0 +1,5 @@
+<RCC>
+  <qresource>
+    <file>ui/Caissa.qml</file>
+  </qresource>
+</RCC>
